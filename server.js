@@ -67,8 +67,8 @@ app.get('/chairs', function(req,res,next){
 //   });
 // });
 
-app.delete('/chairs/:_id',function(req, res){
-  Chair.findByIdAndRemove(req.params._id, function(err, chair){
+app.delete('/chairs/:chairId',function(req, res){
+  Chair.findByIdAndRemove(req.params.chairId, function(err, chair){
     if(err) {
       console.log(err);
     } else {
