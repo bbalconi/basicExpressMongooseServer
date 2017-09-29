@@ -47,99 +47,37 @@ app.get('/chairs', function(req,res,next){
     }
   });
 });
-app.put('/chairs', function(req, res, next){
-  Chair.findById(req.body.id, function(err, chair){
+// app.put('/chairs', function(req, res, next){
+//   Chair.findById(req.body.id, function(err, chair){
+//     if(err) {
+//       console.log(err);
+//       next(err);
+//     } else {
+//       chair.type = req.body.type;
+//       chair.model = req.body.model;
+//       chair.save(function(err, chairReturned){
+//         if(err){
+//           console.log(err);
+//           next(err);
+//         } else {
+//           res.json('chair updated in db' + chairReturned.model);
+//         }
+//       });
+//     }
+//   });
+// });
+
+app.delete('/chairs/:_id',function(req, res){
+  console.log(req.params.id);
+  Chair.findByIdAndRemove(req.params._id, function(err, chair){
     if(err) {
       console.log(err);
-      next(err);
-    } else {
-      chair.type = req.body.type;
-      chair.model = req.body.model;
-      chair.save(function(err, chairReturned){
-        if(err){
-          console.log(err);
-          next(err);
-        } else {
-          res.json('chair updated in db' + chairReturned.model);
-        }
-      });
-    }
-  });
-});
-app.delete('/chairs',function(req, res, next){
-  console.log(req.body);
-  Chair.findByIdAndRemove(req.body.id, function(err, chair){
-    if(err) {
-      console.log(err);
-      next(err);
     } else {
       res.json("successfully deleted a chair: " + chair.model);
     }
   });
-  
-});
-app.post('/chairs', function(req, res, next){
-  var chair = new Chair ();
-  chair.type = req.body.type;
-  chair.model = req.body.model;
-  chair.save(function(err, chairReturned){
-    if (err){
-      console.log(err);
-      next(err);
-    } else {
-      console.log(chairReturned);
-      res.json('chair put in database' + chairReturned.model);
-    }
-  });
-});
-app.post('/chairs', function(req, res){
 
 });
-app.get('/chairs', function(req, res, next){
-  Chair.find(function(err, chairs) {
-    if (err) {
-      console.log(err);
-      next(err);
-    } else {
-    res.json(chairs);
-   }
-  })
-});
-app.put('/chairs', function(req, res){
-  Chair.findById(req.body.id, function(err, chair, next) {
-    if(err){
-      console.log(err);
-      next(err);
-    } else {
-      chair.type = req.body.type;
-      chair.model = req.body.model;
-      chair.save(function(err, chairReturned){
-        if (err){
-          console.log(err);
-          next(err);
-        } else {
-          console.log(chairReturned);
-          res.json('chair updated in database' + chairReturned.model);
-        }
-      });
-    }
-  });
-});
-
-app.delete('/chairs/:id', function(req, res) {
-  var id = req.param("id");
-  Chair.remove({
-      _id: id 
-  }, function(err){
-      if (err) {
-          console.log(err)
-      }
-      else {
-          res.send("Removed Chair");
-      }
-  });
- });
- 
 
 app.get("/", function(req, res) { 
     res.sendfile('index.html');
