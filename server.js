@@ -68,7 +68,6 @@ app.get('/chairs', function(req,res,next){
 // });
 
 app.delete('/chairs/:_id',function(req, res){
-  console.log(req.params.id);
   Chair.findByIdAndRemove(req.params._id, function(err, chair){
     if(err) {
       console.log(err);
@@ -76,7 +75,6 @@ app.delete('/chairs/:_id',function(req, res){
       res.json("successfully deleted a chair: " + chair.model);
     }
   });
-
 });
 
 app.get("/", function(req, res) { 
@@ -86,14 +84,3 @@ app.get("/", function(req, res) {
 app.listen(5000, function() {
    console.log("Listening on 5000");
 });
-
-// app.delete('/chairs/:id', function(req, res, next){
-//   Chair.findByIdAndRemove(req.body.id, function(err, chair) {
-//     if(err){
-//       console.log(err);
-//       next(err);
-//     } else {
-//       res.json("successfully deleted a chair: " + chair.model);
-//     }
-//   });
-// });
