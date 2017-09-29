@@ -9,6 +9,9 @@
   "author": "Mark Buckner <buckner.a.mark@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.4"
+    "body-parser": "^1.18.2",
+    "eslint": "^4.7.2",
+    "express": "^4.15.4",
+    "mongodb-uri": "^0.9.7"
   }
 }
